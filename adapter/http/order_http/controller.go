@@ -8,6 +8,7 @@ import (
 	"github.com/mercadopago/sdk-go/pkg/payment"
 	"github.com/mercadopago/sdk-go/pkg/preference"
 	"math"
+	"os"
 	"payment_gateway_mercadopago/domain/models/mp_payment_model"
 	"payment_gateway_mercadopago/domain/models/order_model"
 	"payment_gateway_mercadopago/domain/models/product_model"
@@ -144,7 +145,7 @@ func (controller *OrderHTTP) createPreferenceRequest(order order_model.Order, de
 	request := preference.Request{
 		Items:           items,
 		Metadata:        metadata,
-		NotificationURL: `https://004f-181-78-85-132.ngrok-free.app/api/order/feedback?business_id=` + strconv.Itoa(int(order.BusinessID)) + `&`,
+		NotificationURL: os.Getenv("MP_FEEDBACK") + `?business_id=` + strconv.Itoa(int(order.BusinessID)) + `&`,
 	}
 	return nil, cfg, &request
 }

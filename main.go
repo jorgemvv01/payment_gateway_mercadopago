@@ -9,7 +9,7 @@ import (
 func main() {
 	storage.InitializeDB()
 	storage.MigrateModels()
-	//storage.SeedData()
+	storage.SeedData()
 
 	r := routes.SetupRoutes()
 	log.Println("[--->>>> STARTING SERVER... <<<<---]")
