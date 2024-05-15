@@ -87,7 +87,7 @@ func SeedData() {
 			Price:       703778,
 			Discount:    12,
 			Tax:         19,
-			Image:       "",
+			Image:       "https://mp-gateway.s3.us-east-2.amazonaws.com/Air+Jordan+1+Retro+High+OG.png",
 		},
 		{
 			BusinessID:  1,
@@ -97,7 +97,7 @@ func SeedData() {
 			Price:       449636,
 			Discount:    0,
 			Tax:         19,
-			Image:       "",
+			Image:       "https://mp-gateway.s3.us-east-2.amazonaws.com/Nike+Dunk+Low+Retro.png",
 		},
 		{
 			BusinessID:  1,
@@ -107,7 +107,7 @@ func SeedData() {
 			Price:       427845,
 			Discount:    25,
 			Tax:         19,
-			Image:       "",
+			Image:       "https://mp-gateway.s3.us-east-2.amazonaws.com/Nike+P-6000.png",
 		},
 		{
 			BusinessID:  1,
@@ -117,7 +117,7 @@ func SeedData() {
 			Price:       700110,
 			Discount:    11,
 			Tax:         19,
-			Image:       "",
+			Image:       "https://mp-gateway.s3.us-east-2.amazonaws.com/Nike+Zegama+2.png",
 		},
 		{
 			BusinessID:  1,
@@ -127,7 +127,7 @@ func SeedData() {
 			Price:       622320,
 			Discount:    32,
 			Tax:         19,
-			Image:       "",
+			Image:       "https://mp-gateway.s3.us-east-2.amazonaws.com/Nike+Air+Max+270.png",
 		},
 	}
 	if err := DB.CreateInBatches(products, len(products)).Error; err != nil {
