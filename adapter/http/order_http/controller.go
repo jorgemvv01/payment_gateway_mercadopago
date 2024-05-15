@@ -143,8 +143,13 @@ func (controller *OrderHTTP) createPreferenceRequest(order order_model.Order, de
 		"order_id": order.ID,
 	}
 	request := preference.Request{
-		Items:           items,
-		Metadata:        metadata,
+		Items:    items,
+		Metadata: metadata,
+		BackURLs: &preference.BackURLsRequest{
+			Success: os.Getenv("MP_BACK_URL_SUCCESS"),
+			Pending: os.Getenv("MP_BACK_URL_PENDING"),
+			Failure: os.Getenv("MP_BACK_URL_FAILURE"),
+		},
 		NotificationURL: os.Getenv("MP_FEEDBACK") + `?business_id=` + strconv.Itoa(int(order.BusinessID)) + `&`,
 	}
 	return nil, cfg, &request
@@ -157,7 +162,7 @@ func (controller *OrderHTTP) updateMPPreferenceOrder(order *order_model.Order, p
 	order.MpPreferenceCreatedAt = preference.DateCreated
 }
 
-func (controller *OrderHTTP) getDataMPPaymentConfirmation(c *gin.Context) (error, []byte, []byte) {
+func (controller *OrderHTTP) getMPPaymentConfirmationData(c *gin.Context) (error, []byte, []byte) {
 	query, err := json.Marshal(c.Request.URL.Query())
 	if err != nil {
 		return err, nil, nil

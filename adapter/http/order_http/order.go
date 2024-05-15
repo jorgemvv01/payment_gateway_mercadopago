@@ -111,7 +111,7 @@ func (controller *OrderHTTP) MPFeedback(c *gin.Context) {
 
 	logRepository := log_repository.NewRepository(storage.DB)
 	logService := log_service.NewService(logRepository)
-	err, query, body := controller.getDataMPPaymentConfirmation(c)
+	err, query, body := controller.getMPPaymentConfirmationData(c)
 	if err != nil {
 		logData := log_model.Log{
 			LogType:     "error",
