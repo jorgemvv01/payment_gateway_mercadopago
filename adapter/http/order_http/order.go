@@ -27,6 +27,16 @@ func NewOrderHTTP() *OrderHTTP {
 	return &OrderHTTP{}
 }
 
+// CreateOrder
+// @Summary Create order with Mercado Pago
+// @Description Create order with Mercado Pago.
+// @Param tags body order_model.OrderRequest true "The following body is required"
+// @Produce application/json
+// @Tags Order
+// @Success 201 {object} response_model.Response{}
+// @Failure 400 {object} response_model.Response{}
+// @Failure 500 {object} response_model.Response{}
+// @Router /order [post]
 func (controller *OrderHTTP) CreateOrder(c *gin.Context) {
 	var err, orderRequest = controller.validateOrderRequestForm(c)
 	if err != nil {
@@ -231,6 +241,17 @@ func (controller *OrderHTTP) MPFeedback(c *gin.Context) {
 	c.Status(http.StatusOK)
 }
 
+// GetOrdersByUser
+// @Summary Get orders by user
+// @Description Get orders by user.
+// @Param user_id path string true "The user ID is required in the query"
+// @Produce application/json
+// @Tags Order
+// @Success 200 {object} response_model.Response{}
+// @Failure 400 {object} response_model.Response{}
+// @Failure 404 {object} response_model.Response{}
+// @Failure 500 {object} response_model.Response{}
+// @Router /order/user/{user_id} [get]
 func (controller *OrderHTTP) GetOrdersByUser(c *gin.Context) {
 	id, err := strconv.ParseUint(c.Param("id"), 10, 64)
 	if err != nil {
@@ -271,6 +292,17 @@ func (controller *OrderHTTP) GetOrdersByUser(c *gin.Context) {
 	})
 }
 
+// GetOrderDetail
+// @Summary Get order detail
+// @Description Get order detail.
+// @Param order_id path string true "The order ID is required in the query"
+// @Produce application/json
+// @Tags Order
+// @Success 200 {object} response_model.Response{}
+// @Failure 400 {object} response_model.Response{}
+// @Failure 404 {object} response_model.Response{}
+// @Failure 500 {object} response_model.Response{}
+// @Router /order/details/{order_id} [get]
 func (controller *OrderHTTP) GetOrderDetail(c *gin.Context) {
 	id, err := strconv.ParseUint(c.Param("id"), 10, 64)
 	if err != nil {

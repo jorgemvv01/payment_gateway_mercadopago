@@ -17,6 +17,17 @@ func NewMPPaymentHTTP() *MPPaymentHTTP {
 	return &MPPaymentHTTP{}
 }
 
+// GetMPPaymentByOrder
+// @Summary Get MP payment by order
+// @Description Get MP payment by order.
+// @Param order_id path string true "The order ID is required in the query"
+// @Produce application/json
+// @Tags MP Payment
+// @Success 200 {object} response_model.Response{}
+// @Failure 400 {object} response_model.Response{}
+// @Failure 404 {object} response_model.Response{}
+// @Failure 500 {object} response_model.Response{}
+// @Router /mp-payment/{order_id} [get]
 func (controller *MPPaymentHTTP) GetMPPaymentByOrder(c *gin.Context) {
 	id, err := strconv.ParseUint(c.Param("id"), 10, 64)
 	if err != nil {

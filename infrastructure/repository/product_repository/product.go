@@ -1,7 +1,6 @@
 package product_repository
 
 import (
-	"errors"
 	"gorm.io/gorm"
 	"payment_gateway_mercadopago/domain/models/product_model"
 )
@@ -28,9 +27,6 @@ func (productRepository Repository) GetAllProductsByBusiness(businessID uint) (e
 	var products *[]product_model.Product
 	if err := productRepository.db.Where("business_id = ?", businessID).Find(&products).Error; err != nil {
 		return err, nil
-	}
-	if len(*products) == 0 {
-		return errors.New("no products found"), nil
 	}
 	return nil, products
 }

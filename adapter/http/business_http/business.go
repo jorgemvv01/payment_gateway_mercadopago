@@ -16,6 +16,16 @@ func NewBusinessHTTP() *BusinessHTTP {
 	return &BusinessHTTP{}
 }
 
+// GetAllBusiness
+// @Summary Get all business
+// @Description Get all business.
+// @Produce application/json
+// @Tags Business
+// @Success 200 {object} response_model.Response{}
+// @Failure 400 {object} response_model.Response{}
+// @Failure 404 {object} response_model.Response{}
+// @Failure 500 {object} response_model.Response{}
+// @Router /business [get]
 func (controller *BusinessHTTP) GetAllBusiness(c *gin.Context) {
 
 	businessRepository := business_repository.NewRepository(storage.DB)

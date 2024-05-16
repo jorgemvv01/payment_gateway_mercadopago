@@ -1,0 +1,254 @@
+basePath: /api
+definitions:
+  order_model.OrderRequest:
+    properties:
+      business_id:
+        type: integer
+      products:
+        items:
+          $ref: '#/definitions/order_model.ProductRequest'
+        type: array
+      user_id:
+        type: integer
+    required:
+    - business_id
+    - products
+    - user_id
+    type: object
+  order_model.ProductRequest:
+    properties:
+      product_id:
+        type: integer
+      quantity:
+        type: integer
+    required:
+    - product_id
+    - quantity
+    type: object
+  response_model.Response:
+    properties:
+      Data: {}
+      Message:
+        type: string
+      Status:
+        type: string
+    type: object
+info:
+  contact:
+    email: jorgemvv01@gmail.com
+    name: Jorge Mario Villarreal Vargas.
+    url: https://www.linkedin.com/in/jorgemariovillarreal/
+  description: 'A simple Go-API to implement split payments in Mercado Pago. \n GitHub
+    Repository: https://github.com/jorgemvv01/payment_gateway_mercadopago'
+  title: Mercado Pago - Payment Gateway / Split payments
+  version: "1.0"
+paths:
+  /business:
+    get:
+      description: Get all business.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response_model.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response_model.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response_model.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response_model.Response'
+      summary: Get all business
+      tags:
+      - Business
+  /mp-payment/{order_id}:
+    get:
+      description: Get MP payment by order.
+      parameters:
+      - description: The order ID is required in the query
+        in: path
+        name: order_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response_model.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response_model.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response_model.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response_model.Response'
+      summary: Get MP payment by order
+      tags:
+      - MP Payment
+  /order:
+    post:
+      description: Create order with Mercado Pago.
+      parameters:
+      - description: The following body is required
+        in: body
+        name: tags
+        required: true
+        schema:
+          $ref: '#/definitions/order_model.OrderRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/response_model.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response_model.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response_model.Response'
+      summary: Create order with Mercado Pago
+      tags:
+      - Order
+  /order/details/{order_id}:
+    get:
+      description: Get order detail.
+      parameters:
+      - description: The order ID is required in the query
+        in: path
+        name: order_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response_model.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response_model.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response_model.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response_model.Response'
+      summary: Get order detail
+      tags:
+      - Order
+  /order/user/{user_id}:
+    get:
+      description: Get orders by user.
+      parameters:
+      - description: The user ID is required in the query
+        in: path
+        name: user_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response_model.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response_model.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response_model.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response_model.Response'
+      summary: Get orders by user
+      tags:
+      - Order
+  /product/by-business/{business_id}:
+    get:
+      description: Get all products by business.
+      parameters:
+      - description: The business ID is required in the query
+        in: path
+        name: business_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response_model.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response_model.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response_model.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response_model.Response'
+      summary: Get all products by business
+      tags:
+      - Products
+  /product/promotional/{business_id}:
+    get:
+      description: Get promotional products by business.
+      parameters:
+      - description: The business ID is required in the query
+        in: path
+        name: business_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response_model.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response_model.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response_model.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response_model.Response'
+      summary: Get promotional products by business
+      tags:
+      - Products
+swagger: "2.0"

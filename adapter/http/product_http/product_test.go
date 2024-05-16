@@ -29,9 +29,9 @@ func TestGetAllProductsByBusiness(t *testing.T) {
 
 	controller := NewProductHTTP()
 	responseRecorder := httptest.NewRecorder()
-	router.GET("/api/product", controller.GetAllProductsByBusiness)
+	router.GET("/api/product/by-business/:id", controller.GetAllProductsByBusiness)
 
-	request := httptest.NewRequest("GET", "/api/product?business_id=1", nil)
+	request := httptest.NewRequest("GET", "/api/product/by-business/1", nil)
 	request.Header.Set("Content-Type", "application/json")
 	router.ServeHTTP(responseRecorder, request)
 
@@ -73,9 +73,9 @@ func TestGetPromotionalProductsByBusiness(t *testing.T) {
 
 	controller := NewProductHTTP()
 	responseRecorder := httptest.NewRecorder()
-	router.GET("/api/product/promotional", controller.GetPromotionalProductsByBusiness)
+	router.GET("/api/product/promotional/:id", controller.GetPromotionalProductsByBusiness)
 
-	request := httptest.NewRequest("GET", "/api/product/promotional?business_id=1", nil)
+	request := httptest.NewRequest("GET", "/api/product/promotional/1", nil)
 	request.Header.Set("Content-Type", "application/json")
 	router.ServeHTTP(responseRecorder, request)
 

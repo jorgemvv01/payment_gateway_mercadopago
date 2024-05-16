@@ -1,0 +1,383 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "A simple Go-API to implement split payments in Mercado Pago. \\n GitHub Repository: https://github.com/jorgemvv01/payment_gateway_mercadopago",
+        "title": "Mercado Pago - Payment Gateway / Split payments",
+        "contact": {
+            "name": "Jorge Mario Villarreal Vargas.",
+            "url": "https://www.linkedin.com/in/jorgemariovillarreal/",
+            "email": "jorgemvv01@gmail.com"
+        },
+        "version": "1.0"
+    },
+    "basePath": "/api",
+    "paths": {
+        "/business": {
+            "get": {
+                "description": "Get all business.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Business"
+                ],
+                "summary": "Get all business",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response_model.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response_model.Response"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/response_model.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response_model.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/mp-payment/{order_id}": {
+            "get": {
+                "description": "Get MP payment by order.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "MP Payment"
+                ],
+                "summary": "Get MP payment by order",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "The order ID is required in the query",
+                        "name": "order_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response_model.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response_model.Response"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/response_model.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response_model.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/order": {
+            "post": {
+                "description": "Create order with Mercado Pago.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Create order with Mercado Pago",
+                "parameters": [
+                    {
+                        "description": "The following body is required",
+                        "name": "tags",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/order_model.OrderRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/response_model.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response_model.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response_model.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/order/details/{order_id}": {
+            "get": {
+                "description": "Get order detail.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Get order detail",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "The order ID is required in the query",
+                        "name": "order_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response_model.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response_model.Response"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/response_model.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response_model.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/order/user/{user_id}": {
+            "get": {
+                "description": "Get orders by user.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Order"
+                ],
+                "summary": "Get orders by user",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "The user ID is required in the query",
+                        "name": "user_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response_model.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response_model.Response"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/response_model.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response_model.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/product/by-business/{business_id}": {
+            "get": {
+                "description": "Get all products by business.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get all products by business",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "The business ID is required in the query",
+                        "name": "business_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response_model.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response_model.Response"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/response_model.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response_model.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/product/promotional/{business_id}": {
+            "get": {
+                "description": "Get promotional products by business.",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get promotional products by business",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "The business ID is required in the query",
+                        "name": "business_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response_model.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/response_model.Response"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/response_model.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response_model.Response"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "order_model.OrderRequest": {
+            "type": "object",
+            "required": [
+                "business_id",
+                "products",
+                "user_id"
+            ],
+            "properties": {
+                "business_id": {
+                    "type": "integer"
+                },
+                "products": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/order_model.ProductRequest"
+                    }
+                },
+                "user_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "order_model.ProductRequest": {
+            "type": "object",
+            "required": [
+                "product_id",
+                "quantity"
+            ],
+            "properties": {
+                "product_id": {
+                    "type": "integer"
+                },
+                "quantity": {
+                    "type": "integer"
+                }
+            }
+        },
+        "response_model.Response": {
+            "type": "object",
+            "properties": {
+                "Data": {},
+                "Message": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

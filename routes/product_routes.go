@@ -8,6 +8,6 @@ import (
 func RegisterProductRouter(router *gin.RouterGroup) {
 	orderRouter := router.Group("/product")
 	controller := product_http.NewProductHTTP()
-	orderRouter.GET("/promotional", controller.GetPromotionalProductsByBusiness)
-	orderRouter.GET("", controller.GetAllProductsByBusiness)
+	orderRouter.GET("/promotional/:id", controller.GetPromotionalProductsByBusiness)
+	orderRouter.GET("/by-business/:id", controller.GetAllProductsByBusiness)
 }
