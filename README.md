@@ -3,6 +3,8 @@ A simple Go-API to implement split payments in Mercado Pago.
 
 This Go API was created with Go using the Gin framework, the GORM ORM and PostgreSQL for relational database management.
 
+![UI](https://github.com/jorgemvv01/payment_gateway_mercadopago/blob/main/mp_payment_gateway.gif)
+
 ## Installation & Run
 **Step 1:**
 
