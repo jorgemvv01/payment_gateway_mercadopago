@@ -35,7 +35,7 @@ func InitializeDB() {
 ```
 ```
 DATABASE_URL=postgresql://YOUR_USER:YOUR_PASSWORD@HOST:PORT/mp_gateway
-DATABASE_URL=postgresql://YOUR_USER:YOUR_PASSWORD@HOST:PORT/mp_gateway_test
+DATABASE_TEST_URL=postgresql://YOUR_USER:YOUR_PASSWORD@HOST:PORT/mp_gateway_test
 ```
 **Step 3:**
 
