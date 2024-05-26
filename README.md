@@ -20,7 +20,7 @@ Create databases:
 CREATE DATABASE mp_gateway;
 CREATE DATABASE mp_gateway_test;
 ```
-Configures the database connection with the environment variables on [storage.go](https://github.com/jorgemvv01/go-api/tree/master/storage/storage.go):
+Configures the database connection with the environment variables on [storage.go](https://github.com/jorgemvv01/payment_gateway_mercadopago/blob/main/storage/storage.go):
 ```go
 func InitializeDB() {
     if DB == nil {
@@ -83,3 +83,5 @@ your_host/api/docs/index.html
 ├── storage
 └── main.go
 ```
+## Client - Mobile application
+You can view and download the implementation of the mobile application by clicking [here](https://github.com/jorgemvv01/mp_payment_client).
